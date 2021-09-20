@@ -1,14 +1,12 @@
 package main
 
 import (
-	"os"
-
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/olahol/melody.v1"
 )
 
-const PORT = os.Getenv("PORT")
+// const PORT = "8080"
 
 func main() {
 	r := gin.Default()
@@ -24,5 +22,5 @@ func main() {
 		m.Broadcast(msg)
 	})
 
-	r.Run(":"+PORT)
+	r.Run()
 }
