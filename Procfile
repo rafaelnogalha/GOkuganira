@@ -1,1 +1,1 @@
-web: bin/GOkuganira
+web: GOkuganira
