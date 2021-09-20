@@ -1,12 +1,14 @@
 package main
 
 import (
+	"os"
+
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/olahol/melody.v1"
 )
 
-const PORT = "8080"
+const PORT = os.Getenv("PORT")
 
 func main() {
 	r := gin.Default()
