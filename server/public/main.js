@@ -7,6 +7,7 @@ const url = "ws://" + window.location.host + "/ws";
 const ws = new WebSocket(url);
 
 ws.onmessage = function (msg) {
+	console.log(msg.data)
     insertMessage(JSON.parse(msg.data))
 };
 
