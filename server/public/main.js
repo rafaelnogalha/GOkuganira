@@ -4,9 +4,9 @@ const username = document.querySelector('#username')
 const send = document.querySelector('#send')
 
 const url = "wss://" + window.location.host + "/ws";
-const ws = new WebSocket(url);
+const wss = new WebSocket(url);
 
-ws.onmessage = function (msg) {
+wss.onmessage = function (msg) {
 	console.log(msg.data)
     insertMessage(JSON.parse(msg.data))
 };
@@ -17,7 +17,7 @@ send.onclick = () => {
 		content: input.value,
     }
 
-    ws.send(JSON.stringify(message));
+    wss.send(JSON.stringify(message));
     input.value = "";
 };
 
@@ -31,7 +31,7 @@ function insertMessage(messageObj) {
 
 	// Set the attribute of the message div
 	message.setAttribute('class', 'chat-message')
-	console.log("name: " +messageObj.username + " content: " + messageObj.content)
+	console.log("name: " + messageObj.username + " content: " + messageObj.content)
 	message.textContent = `${messageObj.username}: ${messageObj.content}`
 
 	// Append the message to our chat div
