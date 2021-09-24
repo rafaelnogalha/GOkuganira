@@ -7,13 +7,9 @@ const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const url = `${protocol}//${window.location.host}/ws`;
 const ws = new WebSocket(url);
 
-ws.onmessage = function (msg) {
-	console.log(msg.data)
-    insertMessage(JSON.parse(msg.data))
-};
-
 const sendMessage = () => {
     const message = {
+		kind: 'message',
 		username: username.value,
 		content: input.value,
     }
@@ -22,7 +18,9 @@ const sendMessage = () => {
     input.value = "";
 };
 
-send.onclick = sendMessage;
+// The user can send a message either by clicking "Send"
+// or pressing "Enter" (unless shift is pressed).
+send.addEventListener('click', sendMessage);
 input.addEventListener('keyup', evt => {
 	if (evt.key === 'Enter' && !evt.shiftKey) {
 		evt.stopPropagation();
@@ -35,7 +33,7 @@ input.addEventListener('keyup', evt => {
  * Insert a message into the UI
  * @param {Message that will be displayed in the UI} messageObj
  */
-function insertMessage(messageObj) {
+const insertMessage = messageObj => {
 	// Create a div object which will hold the message
 	const message = document.createElement('div')
 
@@ -50,3 +48,22 @@ function insertMessage(messageObj) {
 	// Insert the message as the first message of our chat
 	messages.insertBefore(message, messages.firstChild)
 }
+
+/**
+ * Update "<username> is typing..." messages
+ */
+const updateTyping = msg => {
+	console.log('updateTyping got', msg);
+};
+
+const handlers = {
+	'message': insertMessage,
+	'typing': updateTyping,
+};
+
+ws.onmessage = ({ data }) => {
+	const msg = JSON.parse(data);
+	console.log('got', msg);
+	const handler = handlers[msg.kind];
+	handler(msg);
+};
