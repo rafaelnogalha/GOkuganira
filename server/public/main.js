@@ -3,15 +3,16 @@ const messages = document.querySelector('#messages')
 const username = document.querySelector('#username')
 const send = document.querySelector('#send')
 
-const url = "wss://" + window.location.host + "/ws";
-const wss = new WebSocket(url);
+const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
+const url = `${protocol}//${window.location.host}/ws`;
+const ws = new WebSocket(url);
 
 wss.onmessage = function (msg) {
 	console.log(msg.data)
     insertMessage(JSON.parse(msg.data))
 };
 
-send.onclick = () => {
+const sendMessage = () => {
     const message = {
 		username: username.value,
 		content: input.value,
@@ -20,6 +21,15 @@ send.onclick = () => {
     wss.send(JSON.stringify(message));
     input.value = "";
 };
+
+send.onclick = sendMessage;
+input.addEventListener('keyup', evt => {
+	if (evt.key === 'Enter' && !evt.shiftKey) {
+		evt.stopPropagation();
+		sendMessage();
+	}
+});
+
 
 /**
  * Insert a message into the UI
