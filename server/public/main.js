@@ -7,7 +7,7 @@ const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const url = `${protocol}//${window.location.host}/ws`;
 const ws = new WebSocket(url);
 
-wss.onmessage = function (msg) {
+ws.onmessage = function (msg) {
 	console.log(msg.data)
     insertMessage(JSON.parse(msg.data))
 };
@@ -18,7 +18,7 @@ const sendMessage = () => {
 		content: input.value,
     }
 
-    wss.send(JSON.stringify(message));
+    ws.send(JSON.stringify(message));
     input.value = "";
 };
 
