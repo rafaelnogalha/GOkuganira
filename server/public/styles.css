@@ -1,4 +1,66 @@
-#messages{
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap');
+
+:root {
+    /* font-size: 1.5rem; */
+    font-family: "Baloo 2", cursive;
+}
+
+.box {
+    border-radius: 3px;
+    border-width: 1px;
+}
+
+.box-text {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border-radius: inherit;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../../assets/stylish-hexagonal-line-pattern-background/19742.jpg");
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65vw;
+}
+#title {
+    font-family: 'Rampart One', cursive;
+}
+
+#chat {
+    width: 70%;
+}
+
+#messages-container {
+    border-style: solid;
+    border-color: gray;
+    width: auto;
+    background-image: url("https://www.otempo.com.br/img/sempre-editora/superfc/escudo-cruzeiro.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#messages {
     height:300px;
     overflow-y: scroll;
+}
+
+#textarea {
+    resize: none;
+    outline: none;
+    height: auto;
+}
+
+.box-spacing {
+    height: 1vh;
 }
