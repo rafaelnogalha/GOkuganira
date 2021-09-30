@@ -6,6 +6,8 @@
     font-family: "Baloo 2", cursive;
     --border-color: #000000;
     --font-size-message: 1.25rem;
+    --primary-color: rgb(168, 235, 255);
+    --secondary-color: rgb(95, 210, 255);
 }
 
 .box {
@@ -32,7 +34,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("../../assets/stylish-hexagonal-line-pattern-background/19742.jpg");
 }
 
 .container {
@@ -44,6 +45,7 @@ body {
 }
 
 #chat {
+    height: auto;
     width: 100%;
 }
 
@@ -57,13 +59,14 @@ body {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: white;
 }
 
 #messages {
     /* display: flex; */
     height: auto;
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #textarea {
@@ -71,6 +74,56 @@ body {
     height: auto;
 }
 
+#send {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: var(--primary-color);
+    user-select: none;
+}
+
 .box-spacing {
     height: 1vh;
+}
+
+/* Width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border: 3px solid transparent;
+    border-radius: 100px;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--secondary-color);
+}
+
+/* Scrollbar Arrows */
+::-webkit-scrollbar-button:single-button {
+    display: block;
+    border-style: solid;
+    height: 10px;
+    width: 13px;
+}
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-width: 0px 7px 7px 7px;
+    border-color: transparent transparent var(--primary-color) transparent;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement:active {
+    border-color: transparent transparent var(--secondary-color) transparent;
+}
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-width: 7px 7px 0px 7px;
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:single-button:increment:active {
+    border-color: var(--secondary-color) transparent transparent transparent;
 }
