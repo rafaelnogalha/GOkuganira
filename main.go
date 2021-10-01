@@ -2,9 +2,9 @@ package main
 
 import (
 	"net"
-	"fmt"
-	"GOkuganira/utils"
+	// "fmt"
 	"GOkuganira/controllers"
+	"GOkuganira/utils"
 
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
