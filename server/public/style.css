@@ -30,6 +30,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     outline: none;
+    padding: 1px 5px 1px 5px;
 }
 
 body {
@@ -71,6 +72,8 @@ body {
     overflow-y: auto;
     margin-top: 10px;
     margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
 }
 
 #textarea {
@@ -105,7 +108,8 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
-    border: 3px solid transparent;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
     border-radius: 100px;
     background-clip: content-box;
 }
