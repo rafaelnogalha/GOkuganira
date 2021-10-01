@@ -42,7 +42,7 @@ const insertMessage = messageObj => {
     // Set the attribute of the message div
     message.setAttribute('class', 'chat-message')
     console.log("name: " + messageObj.username + " content: " + messageObj.content)
-    message.innerHTML = `${messageObj.username}: ${md.renderInline(messageObj.content)}`
+    message.innerHTML = md.renderInline(`${messageObj.username}: ${messageObj.content}`)
 
     // Append the message to our chat div
     messages.appendChild(message)
