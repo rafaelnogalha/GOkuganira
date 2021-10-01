@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net"
 
 	static "github.com/gin-contrib/static"
@@ -32,7 +31,6 @@ func main() {
 			"username":"` + ip + `",
 			"content": "Resolveu estragar a conversa!"
 		}`
-		fmt.Println("MSG = ", msg)
 		m.BroadcastOthers([]byte(msg), s)
 	})
 	
