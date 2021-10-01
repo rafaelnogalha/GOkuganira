@@ -2,23 +2,36 @@ package main
 
 import (
 	"net"
+	"fmt"
+	"GOkuganira/utils"
+	"GOkuganira/controllers"
 
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/olahol/melody.v1"
 )
 
-// const PORT = "8080"
-
 func main() {
 	r := gin.Default()
 	m := melody.New()
-
+	db := utils.SetupModels()//new database
+	
 	r.Use(static.Serve("/", static.LocalFile("./server/public", true)))
+
+	r.Use(func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	})
 
 	r.GET("/ws", func(c *gin.Context) {
 		m.HandleRequest(c.Writer, c.Request)
 	})
+
+	// Get all users at the database
+	r.GET("/users", controllers.FindUsers)
+  
+	// Post one user at database
+	r.POST("/users", controllers.CreateUser)
 
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
 		m.Broadcast(msg)
@@ -31,6 +44,7 @@ func main() {
 			"username":"` + ip + `",
 			"content": "Resolveu estragar a conversa!"
 		}`
+    
 		m.BroadcastOthers([]byte(msg), s)
 	})
 	
