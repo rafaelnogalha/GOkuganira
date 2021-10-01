@@ -28,7 +28,6 @@ input.addEventListener('keyup', evt => {
 	}
 });
 
-
 /**
  * Insert a message into the UI
  * @param {Message that will be displayed in the UI} messageObj
