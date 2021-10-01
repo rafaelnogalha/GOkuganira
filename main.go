@@ -11,7 +11,6 @@ import (
 	"gopkg.in/olahol/melody.v1"
 )
 
-
 func main() {
 	r := gin.Default()
 	m := melody.New()
@@ -30,6 +29,7 @@ func main() {
 
 	// Get all users at the database
 	r.GET("/users", controllers.FindUsers)
+  
 	// Post one user at database
 	r.POST("/users", controllers.CreateUser)
 
@@ -44,7 +44,7 @@ func main() {
 			"username":"` + ip + `",
 			"content": "Resolveu estragar a conversa!"
 		}`
-		fmt.Println("MSG = ", msg)
+    
 		m.BroadcastOthers([]byte(msg), s)
 	})
 	

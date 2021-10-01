@@ -8,14 +8,14 @@ const url = `${protocol}//${window.location.host}/ws`;
 const ws = new WebSocket(url);
 
 const sendMessage = () => {
-    const message = {
+	const message = {
 		kind: 'message',
 		username: username.value,
 		content: input.value,
-    }
+	}
 
-    ws.send(JSON.stringify(message));
-    input.value = "";
+	ws.send(JSON.stringify(message));
+	input.value = "";
 };
 
 // The user can send a message either by clicking "Send"
@@ -27,7 +27,6 @@ input.addEventListener('keyup', evt => {
 		sendMessage();
 	}
 });
-
 
 /**
  * Insert a message into the UI
@@ -45,8 +44,9 @@ const insertMessage = messageObj => {
 	// Append the message to our chat div
 	messages.appendChild(message)
 
-	// Insert the message as the first message of our chat
-	messages.insertBefore(message, messages.firstChild)
+	// Scroll automatically
+	const elem = document.getElementById("messages")
+	elem.scrollTop = elem.scrollHeight
 }
 
 /**
