@@ -64,6 +64,9 @@ const handlers = {
 ws.onmessage = ({ data }) => {
 	const msg = JSON.parse(data);
 	console.log('got', msg);
+	
+	// Returns if username or msg content is null
+	if (msg.username == "" || msg.content == "") return;
 	const handler = handlers[msg.kind];
 	handler(msg);
 };

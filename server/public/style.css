@@ -90,6 +90,8 @@ title {
     background-color: var(--primary-color);
     user-select: none;
     padding: 3px 10px 3px 10px;
+    border-style: solid;
+    border-color: #000000;
 }
 
 .chat-message {
