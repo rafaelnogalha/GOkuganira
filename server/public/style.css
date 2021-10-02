@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
     font-family: "Baloo 2", cursive;
@@ -10,7 +11,7 @@
 
 .box {
     display: flex;
-    border-radius: 3px;
+    border-radius: 10px;
     border-width: 1px;
 }
 
@@ -23,8 +24,6 @@
     border-width: 1px;
     border-style: solid;
     border-color: var(--border-color);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     outline: none;
     padding: 1px 5px 1px 5px;
 }
@@ -46,18 +45,31 @@ title {
 .container {
     font-size: var(--font-size-message);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 60%;
 }
 
 #chat {
     height: auto;
     width: 100%;
+    position: relative;
+}
+
+#status {
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 35px;
+    overflow: hidden;
+    flex-direction: column;
+    max-height: 1rem;
+    max-width: 30%;
+    font-size: small;
 }
 
 #messages-container {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-style: solid;
     border-color: var(--border-color);
     width: auto;
@@ -67,41 +79,64 @@ title {
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgb(37, 37, 68);
+    padding: 15px;
 }
 
+/* Margin right due to scroll not respecting my choices */
 #messages {
     height: auto;
-    width: 100%;
+    max-width: 100%;
     overflow-y: auto;
-    margin-top: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 10px;
+}
+
+#textarea-container {
+    align-items: center;
+    margin: 15px 5px;
+    padding: 5px;
+    gap: .5rem;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    background-color: #fff;
 }
 
 #textarea {
     resize: none;
-    height: auto;
+    height: 50px;
+    border: 0px;
 }
 
 #send {
     font-family: inherit;
     font-size: inherit;
+    align-items: center;
+    justify-content: center;
     background-color: var(--primary-color);
     user-select: none;
-    padding: 3px 10px 3px 10px;
-    border-style: solid;
-    border-color: #000000;
+    height: 50px;
+    width: 50px;
+    border: 0px;
+    border-radius: 50px;
+}
+
+#send:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
 }
 
 .chat-message {
     border-radius: 10px;
     background-color: var(--primary-color);
     width: fit-content;
-    /* max-width: 40%;
-    height: fit-content; */
+    max-width: 50%;
     padding: 2px 10px;
     margin-bottom: 5px;
+    word-break: break-all; 
+}
+
+@media (max-width: 1000px) {
+    .chat-message {
+        max-width: 85%;
+    }
 }
 
 .box-spacing {
@@ -119,6 +154,7 @@ footer {
 
 .footer-text {
     margin: 0px;
+    text-align: center;
 }
 
 /* Width */
@@ -129,38 +165,18 @@ footer {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-radius: 100px;
+    border-radius: 6px;
     background-clip: content-box;
 }
 
-::-webkit-scrollbar-thumb:active {
+/* TODO: fix pointer */
+::-webkit-scrollbar-thumb:hover {
     background-color: var(--secondary-color);
+    cursor: pointer;
 }
 
 /* Scrollbar Arrows */
-::-webkit-scrollbar-button:single-button {
-    display: block;
-    border-style: solid;
-    height: 10px;
-    width: 13px;
-}
-/* Up */
-::-webkit-scrollbar-button:single-button:vertical:decrement {
-    border-width: 0px 7px 7px 7px;
-    border-color: transparent transparent var(--primary-color) transparent;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:decrement:active {
-    border-color: transparent transparent var(--secondary-color) transparent;
-}
-/* Down */
-::-webkit-scrollbar-button:single-button:vertical:increment {
-    border-width: 7px 7px 0px 7px;
-    border-color: var(--primary-color) transparent transparent transparent;
-}
-
-::-webkit-scrollbar-button:vertical:single-button:increment:active {
-    border-color: var(--secondary-color) transparent transparent transparent;
+::-webkit-scrollbar-button {
+    height: 0px;
+    border-color: transparent transparent transparent transparent;
 }

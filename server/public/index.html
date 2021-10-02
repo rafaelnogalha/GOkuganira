@@ -9,9 +9,8 @@
     <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 </head>
 <body>
+    <title>GOkuganira</title>
     <div class="container">
-        <title>GOkuganira</title>
-        <div id="status"></div>
         <div id="chat">
             <div id="username-container" class="box">
                 <input  type="text"
@@ -24,19 +23,19 @@
             <div class="box-spacing"></div>
             <div id="messages-container" class="box">
                 <div id="messages"></div>
+                <div id="textarea-container" class="box">
+                    <textarea   id="textarea"
+                                name="inputMessage"
+                                placeholder="Enter message..."
+                                class="box-text"
+                                maxlength="140"
+                    ></textarea>
+                    <div id="button-container">
+                        <button id="send" class="box"><span class="material-icons">send</span></button>                   
+                    </div>
+                </div>
             </div>
-            <div class="box-spacing"></div>
-            <div id="textarea-container" class="box">
-                <textarea   id="textarea"
-                            name="inputMessage"
-                            placeholder="Enter message..."
-                            class="box-text"
-                            maxlength="100"></textarea>
-            </div>
-            <div class="box-spacing"></div>
-            <div id="button-container">
-                <button id="send" class="box">Send</button>                   
-            </div>
+            <div id="status"></div>
         </div>
     </div>
     <script type="text/javascript" src="main.js"></script>
