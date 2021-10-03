@@ -7,6 +7,8 @@ const statusTyping = document.querySelector('#status')
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const url = `${protocol}//${window.location.host}/ws`;
 const ws = new WebSocket(url);
+const audio = new Audio('https://files.gamebanana.com/preview/sounds/killsound_9643b.mp3')
+audio.volume = .1
 
 const sendMessage = () => {
 	const message = {
@@ -15,7 +17,9 @@ const sendMessage = () => {
 		content: input.value,
 	}
 
+	// Play audio every time someone sends a message
 	ws.send(JSON.stringify(message));
+	audio.play()
 	input.value = "";
 };
 

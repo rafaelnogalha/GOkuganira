@@ -123,16 +123,18 @@ title {
     width: 2rem;
     border: 0px;
     border-radius: 50px;
-}
-
-/* Paper icon size */
-.material-icons {
-    font-size: 1.125rem;
+    -o-transition: background-color .3s;
+    transition: background-color .3s;
 }
 
 #send:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
+}
+
+/* Paper icon size */
+.material-icons {
+    font-size: 1.125rem;
 }
 
 .chat-message {
@@ -172,7 +174,7 @@ footer {
 
 /* Width */
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 12px;
 }
 
 /* Handle */
@@ -182,14 +184,11 @@ footer {
     background-clip: content-box;
 }
 
-/* TODO: fix pointer */
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--secondary-color);
-    cursor: pointer;
 }
 
 /* Scrollbar Arrows */
 ::-webkit-scrollbar-button {
     height: 0px;
-    border-color: transparent transparent transparent transparent;
 }
