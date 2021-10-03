@@ -26,7 +26,7 @@ const sendMessage = () => {
 // TODO: finish typing status
 const updateTyping = msg => {
 	console.log("TEXTAREA CHANGED!")
-	console.log('updateTyping got', msg);
+	// console.log('updateTyping got', msg);
 	// Create a div object which will hold the message
 	const message = document.createElement('div')
 
@@ -35,8 +35,12 @@ const updateTyping = msg => {
 	console.log("name: " + msg + " is typing")
 	message.textContent = `${msg} is typing...`
 
-	// Append the message to our chat div
-	statusTyping.appendChild(message)
+	// Append the message to status div if size < 3
+	if (statusTyping.childElementCount < 3) {
+		statusTyping.appendChild(message)
+	} else {
+		console.log("Already 3 elements!")
+	}
 };
 
 // The user can send a message either by clicking "Send"

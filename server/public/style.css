@@ -61,10 +61,14 @@ title {
     bottom: 10px;
     left: 35px;
     overflow: hidden;
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
     max-height: 1rem;
-    max-width: 30%;
+    max-width: 80%;
     font-size: small;
+    gap: .3rem;
+
 }
 
 #messages-container {
