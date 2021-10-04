@@ -153,6 +153,10 @@ title {
     }
 }
 
+.chat-message img {
+    max-width: 100%;
+}
+
 .box-spacing {
     height: 1vh;
 }
