@@ -7,8 +7,6 @@ const statusTyping = document.querySelector('#status')
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const url = `${protocol}//${window.location.host}/ws`;
 const ws = new WebSocket(url);
-const audio = new Audio('https://files.gamebanana.com/preview/sounds/killsound_9643b.mp3')
-audio.volume = .1
 
 const sendMessage = () => {
 	const message = {
@@ -19,7 +17,6 @@ const sendMessage = () => {
 
 	// Play audio every time someone sends a message
 	ws.send(JSON.stringify(message));
-	audio.play()
 	input.value = "";
 };
 
@@ -30,7 +27,7 @@ const sendMessage = () => {
 // TODO: finish typing status
 const updateTyping = msg => {
 	console.log("TEXTAREA CHANGED!")
-	// console.log('updateTyping got', msg);
+	console.log('updateTyping got', msg);
 	// Create a div object which will hold the message
 	const message = document.createElement('div')
 
