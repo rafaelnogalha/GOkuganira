@@ -3,21 +3,18 @@ package utils
 import (
 	"GOkuganira/models"
 	"fmt"
-	"log"
-	//"os"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // using postgres sql
-	"github.com/joho/godotenv"
 )
 
 func SetupModels() *gorm.DB {
 	//Load environmenatal variables
-	err := godotenv.Load()
+	//err := godotenv.Load()
 	dbURI := "postgres://wkzyteeoeezzow:a1be4d471410b30b7840b9c5ed4498e93404767dc4b58190a7fea2bd166fa6cc@ec2-54-204-148-110.compute-1.amazonaws.com:5432/dbh1jqp64bufnj"
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
 
 	// username := os.Getenv("DATABASE_USER")
 	// password := os.Getenv("DATABASE_PASSWORD")
