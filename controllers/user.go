@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"GOkuganira/models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
-	"GOkuganira/models"
 	"net/http"
 )
 

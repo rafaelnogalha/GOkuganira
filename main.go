@@ -16,8 +16,8 @@ func main() {
 	port := os.Getenv("PORT");
 	r := gin.Default()
 	m := melody.New()
-	db := utils.SetupModels()//new database
-	
+	db := utils.SetupModels() //new database
+
 	r.Use(static.Serve("/", static.LocalFile("./server/public", true)))
 
 	r.Use(func(c *gin.Context) {
@@ -31,7 +31,7 @@ func main() {
 
 	// Get all users at the database
 	r.GET("/users", controllers.FindUsers)
-  
+
 	// Post one user at database
 	r.POST("/users", controllers.CreateUser)
 
@@ -46,10 +46,10 @@ func main() {
 			"username":"` + ip + `",
 			"content": "Resolveu estragar a conversa!"
 		}`
-    
+
 		m.BroadcastOthers([]byte(msg), s)
 	})
-	
+
 	r.Run(":"+port)
 }
 
