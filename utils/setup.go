@@ -2,7 +2,6 @@ package utils
 
 import (
 	"GOkuganira/models"
-	"fmt"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // using postgres sql
@@ -16,6 +15,5 @@ func SetupModels() *gorm.DB {
 		panic("Failed to connect to database!")
 	}
 	db.AutoMigrate(&models.User{})
-	fmt.Println("Successfully connected!", db)
 	return db
 }
