@@ -17,6 +17,7 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/kr/pretty v0.2.0 // indirect
+	github.com/lib/pq v1.10.3 // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect

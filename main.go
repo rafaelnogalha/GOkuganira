@@ -3,6 +3,7 @@ package main
 import (
 	"net"
 	// "fmt"
+	"os"
 	"GOkuganira/controllers"
 	"GOkuganira/utils"
 
@@ -12,6 +13,7 @@ import (
 )
 
 func main() {
+	port := os.Getenv("PORT");
 	r := gin.Default()
 	m := melody.New()
 	db := utils.SetupModels()//new database
@@ -48,7 +50,7 @@ func main() {
 		m.BroadcastOthers([]byte(msg), s)
 	})
 	
-	r.Run()
+	r.Run(":"+port)
 }
 
 func GetLocalIP() string {
