@@ -9,9 +9,8 @@
     <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 </head>
 <body>
+    <title>GOkuganira</title>
     <div class="container">
-        <h1 id="title">GOkuganira</h1>
-        <div id="status"></div>
         <div id="chat">
             <div id="username-container" class="box">
                 <input  type="text"
@@ -19,26 +18,41 @@
                         id="username"
                         placeholder="Enter name..."
                         class="box-text"
+                        maxlength="30"
                 >
             </div>
             <div class="box-spacing"></div>
             <div id="messages-container" class="box">
                 <div id="messages"></div>
+                <div id="textarea-container" class="box">
+                    <textarea   id="textarea"
+                                name="inputMessage"
+                                placeholder="Enter message..."
+                                class="box-text"
+                                maxlength="140"
+                    ></textarea>
+                    <div id="button-container">
+                        <button id="send"><span class="material-icons">send</span></button>                   
+                    </div>
+                </div>
             </div>
-            <div class="box-spacing"></div>
-            <div id="textarea-container" class="box">
-                <textarea   id="textarea"
-                            name="inputMessage"
-                            placeholder="Enter message..."
-                            class="box-text"></textarea>
-            </div>
-            <div class="box-spacing"></div>
-            <div id="button-container">
-                <button style=background-color:rgb(158,227,245); border-color:rgb(0,204,255); color:rgb(0,204,255) id="send" class="btn">Send</button>                   
-            </div>
+            <div id="status"></div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js" integrity="sha512-cTQeM/op796Fp1ZUxfech8gSMLT/HvrXMkRGdGZGQnbwuq/obG0UtcL04eByVa99qJik7WlnlQOr5/Fw5B36aw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="main.js"></script>
+    <footer>
+        <div class="box-spacing"></div>
+        <p class="footer-text">
+            André Larrosa <span>&#8226;</span>
+            Carlos Eduardo <span>&#8226;</span>
+            Gustavo Tomás <span>&#8226;</span>
+            Leonardo Riether <span>&#8226;</span>
+            Rafael Nogalha <span>&#8226;</span>
+            Tong Zhou
+        </p>
+        <p class="footer-text">UnB - Brasília - Brasil</p>
+        <p class="footer-text">2021</p>
+    </footer>
 </body>
 </html>
