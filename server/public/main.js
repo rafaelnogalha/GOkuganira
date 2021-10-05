@@ -55,7 +55,7 @@ let typing = {
     timeout: 3000,
 
     /**
-     * Sends a {kind: "updateTyping"} message to the websocket
+     * Sends a {kind: "updateTypingStatus"} message to the websocket
      * when the user has stopped typing.
      *
      * This function is debounced, so it only triggers after the user
@@ -65,13 +65,13 @@ let typing = {
     stopped() {
         this.isTyping = false;
         wsSend({
-            kind: 'updateTyping',
+            kind: 'updateTypingStatus',
             isTyping: false,
         });
     },
 
     /**
-     * Sends a {kind: "updateTyping"} message to the websocket
+     * Sends a {kind: "updateTypingStatus"} message to the websocket
      * when the user has started typing.
      *
      * Resets the timer for the stoppedTyping debounce every time it's
@@ -87,7 +87,7 @@ let typing = {
         if (!this.isTyping) {
             this.isTyping = true;
             wsSend({
-                kind: 'updateTyping',
+                kind: 'updateTypingStatus',
                 isTyping: true,
             });
         }
