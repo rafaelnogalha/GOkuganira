@@ -39,7 +39,7 @@ const updateTypingStatus = msg => {
     // Set the attribute of the message div
     message.setAttribute('class', 'status-message')
     console.log("name: " + msg.username + " is typing")
-    message.textContent = `${msg} is typing...`
+    message.textContent = `${msg.username} is typing...`
 
     // Append the message to status div if size < 3
     if (statusTyping.childElementCount < 3) {
