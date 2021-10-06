@@ -49,6 +49,10 @@ func main() {
 
 		m.BroadcastOthers([]byte(msg), s)
 	})
+	
+	m.HandleDisconnect(func(s *melody.Session){
+		fmt.Println("TAMANHO_4: ",m.Len())
+	})
 
 	r.Run(":"+port)
 }
