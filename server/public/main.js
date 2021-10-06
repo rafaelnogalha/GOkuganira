@@ -41,17 +41,15 @@ const sendMessage = () => {
 };
 
 /**
- * Update "<username> is typing..." messages
+ * Insert a "<username> is typing" message
  */
-// TODO: finish typing status
-const updateTypingStatus = msg => {
-    console.log("TEXTAREA CHANGED!")
-    console.log('updateTyping got', msg);
+const addTypingStatus = msg => {
     // Create a div object which will hold the message
     const message = document.createElement('div')
 
     // Set the attribute of the message div
     message.setAttribute('class', 'status-message')
+    message.dataset.user = msg.username;
     console.log("name: " + msg.username + " is typing")
     message.textContent = `${msg.username} is typing...`
 
@@ -63,10 +61,31 @@ const updateTypingStatus = msg => {
     }
 };
 
+/**
+ * Remove a "<username> is typing" message
+ */
+const removeTypingStatus = msg => {
+    Array.from(statusTyping.children)
+        .filter(el => el.dataset.user === msg.username)
+        .map(el => el.remove());
+};
+
+/**
+ * Given a websocket event of kind: 'typing', updates the
+ * "<username> is typing..." messages accordingly
+ */
+const updateTypingStatus = msg => {
+    console.log('updateTyping got', msg);
+    if (msg.isTyping)
+        addTypingStatus(msg);
+    else
+        removeTypingStatus(msg);
+};
+
 let typing = {
     isTyping: false,
     timer: null,
-    timeout: 3000,
+    timeout: 2000,
 
     /**
      * Sends a {kind: "typing"} message to the websocket
