@@ -36,6 +36,28 @@ body {
     background-color: rgb(255, 252, 246);
 }
 
+#nav-container {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    position: fixed;
+    left: 20px;
+    top: 200px;
+}
+
+#navbar {
+    font-size: var(--font-size-message);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    border-bottom: 0px;
+}
+
+.nav-item {
+    padding: 5px 50px;
+    border-bottom: 1px solid red;
+}
+
 title {
     display: flex;
     font-size: 50px;
