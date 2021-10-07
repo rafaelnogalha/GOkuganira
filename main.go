@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net"
-	// "fmt"
-	"os"
 	"GOkuganira/controllers"
 	"GOkuganira/utils"
+	"fmt"
+	"net"
+	"os"
 
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
@@ -40,6 +40,7 @@ func main() {
 	})
 
 	m.HandleConnect(func(s *melody.Session) {
+		fmt.Println("Number of active sessions: ", m.Len())
 		ip := GetLocalIP()
 		msg := `{
 			"kind": "message",
@@ -51,7 +52,7 @@ func main() {
 	})
 	
 	m.HandleDisconnect(func(s *melody.Session){
-		fmt.Println("TAMANHO_4: ",m.Len())
+		fmt.Println("Number of active sessions: ", m.Len())
 	})
 
 	r.Run(":"+port)
