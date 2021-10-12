@@ -4,7 +4,6 @@ import (
 	"GOkuganira/controllers"
 	"GOkuganira/utils"
 	"fmt"
-	"net"
 	"net/http"
 
 	static "github.com/gin-contrib/static"
@@ -25,21 +24,18 @@ func main() {
 		c.Next()
 	})
 
-	// TODO: DM (/direct) /ws path is the same of main chat, so messages are bleeding into
-	// each other.
-
 	// Get main chat
 	r.GET("/ws", func(c *gin.Context) {
 		m.HandleRequest(c.Writer, c.Request)
 	})
 
 	// Get other room
-	r.GET("/direct", func(c *gin.Context) {
+	r.GET("/direct/:name", func(c *gin.Context) {
 		fmt.Println("GET NO DIRECT")
 		http.ServeFile(c.Writer, c.Request, "./server/public/direct.html")
 	})
 
-	r.GET("/direct/ws", func(c *gin.Context) {
+	r.GET("/direct/:name/ws", func(c *gin.Context) {
 		fmt.Println("GET NO DIRECT WS")
 		m.HandleRequest(c.Writer, c.Request)
 	})
@@ -50,7 +46,6 @@ func main() {
 	// Post one user at database
 	r.POST("/users", controllers.CreateUser)
 
-	// TODO: messages are bleeding to other chatrooms, gotta fix dat
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
 		m.BroadcastFilter(msg, func(q *melody.Session) bool {
 			cond := q.Request.URL.Path == s.Request.URL.Path
@@ -62,16 +57,17 @@ func main() {
 		})
 	})
 
+	// TODO: see if can be done with username instead of IP :)
 	m.HandleConnect(func(s *melody.Session) {
-		fmt.Println("Number of active sessions: ", m.Len())
-		ip := GetLocalIP()
-		msg := `{
-			"kind": "message",
-			"username":"` + ip + `",
-			"content": "Resolveu estragar a conversa!"
-		}`
+		// fmt.Println("Number of active sessions: ", m.Len())
+		// ip := GetLocalIP()
+		// msg := `{
+		// 	"kind": "message",
+		// 	"username":"` + ip + `",
+		// 	"content": "Resolveu estragar a conversa!"
+		// }`
 
-		m.BroadcastOthers([]byte(msg), s)
+		// m.BroadcastOthers([]byte(msg), s)
 	})
 	
 	m.HandleDisconnect(func(s *melody.Session){
@@ -79,20 +75,4 @@ func main() {
 	})
 
 	r.Run(":5000")
-}
-
-func GetLocalIP() string {
-	addrs, err := net.InterfaceAddrs()
-	if err != nil {
-		return ""
-	}
-	for _, address := range addrs {
-		// check the address type and if it is not a loopback the display it
-		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-			if ipnet.IP.To4() != nil {
-				return ipnet.IP.String()
-			}
-		}
-	}
-	return ""
 }

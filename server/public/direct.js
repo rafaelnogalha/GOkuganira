@@ -6,7 +6,7 @@ const statusTyping = document.querySelector('#status')
 
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const url = `${protocol}//${window.location.host}${window.location.pathname}/ws`;
-console.log("PATHNAME: ", window.location.pathname);
+console.log("URL: ", url);
 const ws = new WebSocket(url);
 
 const md = window.markdownit();
