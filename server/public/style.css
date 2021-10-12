@@ -132,7 +132,7 @@ title {
     border: 0px;
 }
 
-#send {
+button {
     font-family: inherit;
     font-size: inherit;
     display: flex;
@@ -148,7 +148,7 @@ title {
     transition: background-color .3s;
 }
 
-#send:hover {
+button:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
 }
@@ -181,6 +181,10 @@ title {
 
 .box-spacing {
     height: 1vh;
+}
+
+.create-channel {
+    background-color: inherit;
 }
 
 footer {

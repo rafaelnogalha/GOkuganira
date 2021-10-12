@@ -3,6 +3,8 @@ const messages = document.querySelector('#messages')
 const username = document.querySelector('#username')
 const send = document.querySelector('#send')
 const statusTyping = document.querySelector('#status')
+const create = document.querySelector('#create')
+const createInput = document.querySelector('.create-channel')
 
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
 const host = window.location.host;
@@ -107,6 +109,14 @@ input.addEventListener('keyup', evt => {
         sendMessage();
     }
 });
+
+// User can create a new channel by typing a name and pressing the button
+if (create) {
+    create.addEventListener('click', () => {
+        const channelName = createInput.value;
+        window.open(`channel/${channelName}`, "_blank").focus();
+    });
+}
 
 /**
  * Insert a message into the UI
