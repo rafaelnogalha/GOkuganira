@@ -5,8 +5,10 @@ const send = document.querySelector('#send')
 const statusTyping = document.querySelector('#status')
 
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
-const url = `${protocol}//${window.location.host}${window.location.pathname}/ws`;
-console.log("PATHNAME: ", window.location.pathname);
+const host = window.location.host;
+const path = window.location.pathname;
+
+const url = `${protocol}//${host}${path}ws`;
 const ws = new WebSocket(url);
 
 const md = window.markdownit();

@@ -30,13 +30,11 @@ func main() {
 	})
 
 	// Get other room
-	r.GET("/channel/:name", func(c *gin.Context) {
-		fmt.Println("GET NO DIRECT")
-		http.ServeFile(c.Writer, c.Request, "./server/public/direct.html")
+	r.GET("/channel/:name/", func(c *gin.Context) {
+		http.ServeFile(c.Writer, c.Request, "./server/public/channel.html")
 	})
 
 	r.GET("/channel/:name/ws", func(c *gin.Context) {
-		fmt.Println("GET NO DIRECT WS")
 		m.HandleRequest(c.Writer, c.Request)
 	})
 
@@ -49,10 +47,6 @@ func main() {
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
 		m.BroadcastFilter(msg, func(q *melody.Session) bool {
 			cond := q.Request.URL.Path == s.Request.URL.Path
-			// fmt.Println("MSG ", string (msg))
-			fmt.Println("PATH ", q.Request.URL.Path)
-			fmt.Println("PATH ", s.Request.URL.Path)
-			// fmt.Println("TRUE? ", cond)
 			return cond
 		})
 	})
