@@ -30,12 +30,12 @@ func main() {
 	})
 
 	// Get other room
-	r.GET("/direct/:name", func(c *gin.Context) {
+	r.GET("/channel/:name", func(c *gin.Context) {
 		fmt.Println("GET NO DIRECT")
 		http.ServeFile(c.Writer, c.Request, "./server/public/direct.html")
 	})
 
-	r.GET("/direct/:name/ws", func(c *gin.Context) {
+	r.GET("/channel/:name/ws", func(c *gin.Context) {
 		fmt.Println("GET NO DIRECT WS")
 		m.HandleRequest(c.Writer, c.Request)
 	})
