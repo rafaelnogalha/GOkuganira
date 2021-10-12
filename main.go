@@ -5,7 +5,7 @@ import (
 	"GOkuganira/utils"
 	"fmt"
 	"net"
-	"os"
+	"net/http"
 
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	port := os.Getenv("PORT");
+	// port := os.Getenv("PORT");
 	r := gin.Default()
 	m := melody.New()
 	db := utils.SetupModels() //new database
@@ -25,7 +25,22 @@ func main() {
 		c.Next()
 	})
 
+	// TODO: DM (/direct) /ws path is the same of main chat, so messages are bleeding into
+	// each other.
+
+	// Get main chat
 	r.GET("/ws", func(c *gin.Context) {
+		m.HandleRequest(c.Writer, c.Request)
+	})
+
+	// Get other room
+	r.GET("/direct", func(c *gin.Context) {
+		fmt.Println("GET NO DIRECT")
+		http.ServeFile(c.Writer, c.Request, "./server/public/direct.html")
+	})
+
+	r.GET("/direct/ws", func(c *gin.Context) {
+		fmt.Println("GET NO DIRECT WS")
 		m.HandleRequest(c.Writer, c.Request)
 	})
 
@@ -35,8 +50,16 @@ func main() {
 	// Post one user at database
 	r.POST("/users", controllers.CreateUser)
 
+	// TODO: messages are bleeding to other chatrooms, gotta fix dat
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
-		m.Broadcast(msg)
+		m.BroadcastFilter(msg, func(q *melody.Session) bool {
+			cond := q.Request.URL.Path == s.Request.URL.Path
+			// fmt.Println("MSG ", string (msg))
+			fmt.Println("PATH ", q.Request.URL.Path)
+			fmt.Println("PATH ", s.Request.URL.Path)
+			// fmt.Println("TRUE? ", cond)
+			return cond
+		})
 	})
 
 	m.HandleConnect(func(s *melody.Session) {
@@ -55,7 +78,7 @@ func main() {
 		fmt.Println("Number of active sessions: ", m.Len())
 	})
 
-	r.Run(":"+port)
+	r.Run(":5000")
 }
 
 func GetLocalIP() string {
