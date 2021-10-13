@@ -18,9 +18,7 @@ const md = window.markdownit();
 // Set title of channel when window finishes loading
 window.addEventListener("load", setTitle = () => {
     if (path != "/") {
-        const nameRegex = new RegExp(/\/\w+\/$/);
-        const title = path.match(nameRegex).toString().slice(1, -1);
-        document.title = title;
+        document.title = decodeURI(path.split("/")[2]);
     }
 });
 
