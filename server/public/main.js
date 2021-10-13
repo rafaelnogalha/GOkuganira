@@ -18,7 +18,9 @@ const md = window.markdownit();
 // Set title of channel when window finishes loading
 window.addEventListener("load", setTitle = () => {
     if (path != "/") {
-        document.title = decodeURI(path.split("/")[2]);
+        const newTitle = decodeURI(path.split("/")[2]);
+        document.title = newTitle
+        document.getElementById("channel-title").innerHTML = newTitle;
     }
 });
 
