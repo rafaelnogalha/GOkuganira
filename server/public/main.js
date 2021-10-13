@@ -15,6 +15,15 @@ const ws = new WebSocket(url);
 
 const md = window.markdownit();
 
+// Set title of channel when window finishes loading
+window.addEventListener("load", setTitle = () => {
+    if (path != "/") {
+        const nameRegex = new RegExp(/\/\w+\/$/);
+        const title = path.match(nameRegex).toString().slice(1, -1);
+        document.title = title;
+    }
+});
+
 const wsSend = data => {
     ws.send(JSON.stringify({
         ...data,
