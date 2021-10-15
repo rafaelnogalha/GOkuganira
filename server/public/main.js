@@ -19,7 +19,7 @@ const md = window.markdownit();
 window.addEventListener("load", setTitle = () => {
     if (path != "/") {
         const newTitle = decodeURI(path.split("/")[2]);
-        document.title = newTitle
+        document.title = newTitle;
         document.getElementById("channel-title").innerHTML = newTitle;
     }
 });
@@ -45,19 +45,16 @@ const sendMessage = () => {
  */
 const addTypingStatus = msg => {
     // Create a div object which will hold the message
-    const message = document.createElement('div')
+    const message = document.createElement('div');
 
     // Set the attribute of the message div
-    message.setAttribute('class', 'status-message')
+    message.setAttribute('class', 'status-message');
     message.dataset.user = msg.username;
-    console.log("name: " + msg.username + " is typing")
-    message.textContent = `${msg.username} is typing...`
+    message.textContent = `${msg.username} is typing...`;
 
     // Append the message to status div if size < 3
     if (statusTyping.childElementCount < 3) {
-        statusTyping.appendChild(message)
-    } else {
-        console.log("Already 3 elements!")
+        statusTyping.appendChild(message);
     }
 };
 
@@ -75,7 +72,6 @@ const removeTypingStatus = msg => {
  * "<username> is typing..." messages accordingly
  */
 const updateTypingStatus = msg => {
-    console.log('updateTyping got', msg);
     if (msg.isTyping)
         addTypingStatus(msg);
     else
@@ -145,9 +141,7 @@ if (create) {
         createInput.value = "";
         window.open(`channel/${channelName}`, "_blank").focus();
     };
-
     create.addEventListener('click', openChannel);
-
     createInput.addEventListener('keyup', evt => {
         if (evt.key === 'Enter') {
             evt.stopPropagation();
@@ -162,18 +156,14 @@ if (create) {
  */
 const insertMessage = messageObj => {
     // Create a div object which will hold the message
-    const message = document.createElement('div')
+    const message = document.createElement('div');
 
     // Set the attribute of the message div
-    message.setAttribute('class', 'chat-message')
-    console.log("name: " + messageObj.username + " content: " + messageObj.content)
-    message.innerHTML = md.renderInline(`${messageObj.username}: ${messageObj.content}`)
-
-    // Append the message to our chat div
-    messages.appendChild(message)
-
-    // Scroll automatically
-    messages.scrollTop = messages.scrollHeight
+    message.setAttribute('class', 'chat-message');
+    message.innerHTML = md.renderInline(`${messageObj.username}: ${messageObj.content}`);
+    
+    messages.appendChild(message);              // Append the message to our chat div
+    messages.scrollTop = messages.scrollHeight; // Scroll automatically
 }
 
 const handlers = {
