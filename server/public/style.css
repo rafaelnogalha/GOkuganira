@@ -36,6 +36,28 @@ body {
     background-color: rgb(255, 252, 246);
 }
 
+#nav-container {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    position: fixed;
+    left: 20px;
+    top: 200px;
+}
+
+#navbar {
+    font-size: var(--font-size-message);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    border-bottom: 0px;
+}
+
+.nav-item {
+    padding: 5px 50px;
+    border-bottom: 1px solid red;
+}
+
 title {
     display: flex;
     font-size: 50px;
@@ -110,7 +132,7 @@ title {
     border: 0px;
 }
 
-#send {
+button {
     font-family: inherit;
     font-size: inherit;
     display: flex;
@@ -126,7 +148,7 @@ title {
     transition: background-color .3s;
 }
 
-#send:hover {
+button:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
 }
@@ -159,6 +181,10 @@ title {
 
 .box-spacing {
     height: 1vh;
+}
+
+.create-channel {
+    background-color: inherit;
 }
 
 footer {

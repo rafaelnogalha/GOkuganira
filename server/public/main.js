@@ -3,12 +3,26 @@ const messages = document.querySelector('#messages')
 const username = document.querySelector('#username')
 const send = document.querySelector('#send')
 const statusTyping = document.querySelector('#status')
+const create = document.querySelector('#create')
+const createInput = document.querySelector('.create-channel')
 
 const protocol = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
-const url = `${protocol}//${window.location.host}/ws`;
+const host = window.location.host;
+const path = window.location.pathname;
+
+const url = `${protocol}//${host}${path}ws`;
 const ws = new WebSocket(url);
 
 const md = window.markdownit();
+
+// Set title of channel when window finishes loading
+window.addEventListener("load", setTitle = () => {
+    if (path != "/") {
+        const newTitle = decodeURI(path.split("/")[2]);
+        document.title = newTitle
+        document.getElementById("channel-title").innerHTML = newTitle;
+    }
+});
 
 const wsSend = data => {
     ws.send(JSON.stringify({
@@ -123,6 +137,14 @@ input.addEventListener('keyup', evt => {
         sendMessage();
     }
 });
+
+// User can create a new channel by typing a name and pressing the button
+if (create) {
+    create.addEventListener('click', () => {
+        const channelName = createInput.value;
+        window.open(`channel/${channelName}`, "_blank").focus();
+    });
+}
 
 /**
  * Insert a message into the UI
