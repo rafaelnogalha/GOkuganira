@@ -5,6 +5,7 @@ import (
 	"GOkuganira/utils"
 	"fmt"
 	"net/http"
+	"os"
 
 	static "github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
@@ -12,7 +13,7 @@ import (
 )
 
 func main() {
-	// port := os.Getenv("PORT");
+	port := os.Getenv("PORT");
 	r := gin.Default()
 	m := melody.New()
 	db := utils.SetupModels() //new database
@@ -68,5 +69,5 @@ func main() {
 		fmt.Println("Number of active sessions: ", m.Len())
 	})
 
-	r.Run(":5000")
+	r.Run(":" + port)
 }
