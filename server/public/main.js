@@ -111,8 +111,8 @@ let typing = {
 // The user can send a message either by clicking "Send"
 // or pressing "Enter" (unless shift is pressed).
 send.addEventListener('click', sendMessage);
+input.addEventListener('input', () => typing.started());
 input.addEventListener('keyup', evt => {
-    typing.started();
     if (evt.key === 'Enter' && !evt.shiftKey) {
         evt.stopPropagation();
         sendMessage();
@@ -121,9 +121,19 @@ input.addEventListener('keyup', evt => {
 
 // User can create a new channel by typing a name and pressing the button
 if (create) {
-    create.addEventListener('click', () => {
+    const openChannel = () => {
         const channelName = createInput.value;
+        createInput.value = "";
         window.open(`channel/${channelName}`, "_blank").focus();
+    };
+
+    create.addEventListener('click', openChannel);
+
+    createInput.addEventListener('keyup', evt => {
+        if (evt.key === 'Enter') {
+            evt.stopPropagation();
+            openChannel();
+        }
     });
 }
 
