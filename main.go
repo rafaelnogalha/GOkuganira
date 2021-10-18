@@ -52,17 +52,7 @@ func main() {
 		})
 	})
 
-	// TODO: see if can be done with username instead of IP :)
 	m.HandleConnect(func(s *melody.Session) {
-		// fmt.Println("Number of active sessions: ", m.Len())
-		// ip := GetLocalIP()
-		// msg := `{
-		// 	"kind": "message",
-		// 	"username":"` + ip + `",
-		// 	"content": "Resolveu estragar a conversa!"
-		// }`
-
-		// m.BroadcastOthers([]byte(msg), s)
 	})
 	
 	m.HandleDisconnect(func(s *melody.Session){
