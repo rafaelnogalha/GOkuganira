@@ -52,8 +52,8 @@ const addTypingStatus = msg => {
     message.dataset.user = msg.username;
     message.textContent = `${msg.username} is typing...`;
 
-    // Append the message to status div if size < 3
-    if (statusTyping.childElementCount < 3) {
+    // Append the message to status div if size < 6
+    if (statusTyping.childElementCount < 6) {
         statusTyping.appendChild(message);
     }
 };
