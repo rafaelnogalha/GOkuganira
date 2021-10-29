@@ -1,4 +1,4 @@
 # GOkuganira
 
-#### Link da wiki: https://projetolp20211.fandom.com/pt-br/wiki/Projeto-LP-2021/1_Wiki
+#### Link da wiki: https://lpunb.fandom.com/wiki/2021.1_-_Golang_-_Grupo_5:_GOkuganira
 #### Link do projeto: https://gokuganira-lp.herokuapp.com/
